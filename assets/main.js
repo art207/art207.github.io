@@ -2,9 +2,8 @@
 // EDIT THESE TWO LINES to point at your own GitHub repo.
 // They power the "sync status" line in the header and the dashboard.
 // ------------------------------------------------------------------
-const GH_USERNAME = "your-username";
-const GH_REPO = "your-username.github.io";
-
+const GH_USERNAME = "art207";
+const GH_REPO = "art207.github.io";
 // Mobile nav toggle
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.querySelector(".nav-toggle");
