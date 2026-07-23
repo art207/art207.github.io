@@ -48,6 +48,27 @@
     <div class="dash-note" id="dash-note" style="display:none;">
       Showing demo data — set <code>GH_USERNAME</code> and <code>GH_REPO</code> in <code>assets/main.js</code> to pull your own repo's live stats.
     </div>
+
+    <div class="section-label" style="margin-top:2.5rem;">Power BI report</div>
+
+    <!--
+      To embed a Power BI report here:
+      1. In Power BI Desktop/Service, open the report and use
+         File > Export > Publish to web (public).
+      2. Copy the <iframe> embed URL it gives you (looks like
+         https://app.powerbi.com/view?r=...).
+      3. Paste that URL as the src below, replacing the placeholder.
+      Note: "Publish to web" makes the report visible to anyone with
+      the link — don't use it for reports containing sensitive data.
+    -->
+    <div class="embed-wrap">
+      <iframe
+        title="Power BI report"
+        src="https://app.powerbi.com/view?r=REPLACE_WITH_YOUR_PUBLISH_TO_WEB_URL"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="embed-caption">Replace the iframe src in dashboard/index.html with your own Power BI "Publish to web" link.</div>
   </div>
 </main>
 

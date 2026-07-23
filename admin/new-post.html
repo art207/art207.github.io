@@ -67,6 +67,11 @@
         <textarea id="body" rows="14" placeholder="Write in plain paragraphs, separated by a blank line.&#10;&#10;Start a line with ## for a subheading.&#10;Start a line with &gt; for a pull-quote." required></textarea>
         <div class="hint">Blank line = new paragraph. <code>## heading</code> for a subheading. <code>&gt; quote</code> for a pull-quote.</div>
       </div>
+      <div class="field">
+        <label for="embed">Embed URL (optional)</label>
+        <input type="text" id="embed" placeholder="https://app.powerbi.com/view?r=...">
+        <div class="hint">A Power BI "Publish to web" link (or any iframe-able URL). If set, it's embedded near the top of the post, above the body text.</div>
+      </div>
       <button type="submit" class="btn">Generate</button>
     </form>
 
@@ -158,9 +163,13 @@
     const readtime = document.getElementById("readtime").value.trim() || "5 min read";
     const excerpt = document.getElementById("excerpt").value.trim();
     const body = document.getElementById("body").value;
+    const embedUrl = document.getElementById("embed").value.trim();
 
     const displayDate = formatDate(isoDate);
     const bodyHtml = bodyToHtml(body);
+    const embedHtml = embedUrl
+      ? `\n      <div class="embed-wrap">\n        <iframe title="${escapeHtml(title)} — embedded report" src="${escapeHtml(embedUrl)}" allowfullscreen></iframe>\n      </div>\n`
+      : "";
 
     const html = `<!DOCTYPE html>
 <html lang="en">
@@ -198,7 +207,7 @@
     <article class="post">
       <h1>${escapeHtml(title)}</h1>
       <div class="post-meta">${displayDate} &middot; ${escapeHtml(readtime)} &middot; <a href="index.html">&larr; back to blog</a></div>
-
+${embedHtml}
 ${bodyHtml}
     </article>
 

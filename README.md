@@ -78,7 +78,29 @@ There's a toggle button (sun/moon icon) in the header on every page. It respects
 
 **Important:** this is a convenience gate, not real security. The site is a public static repo — anyone who finds `admin/new-post.html` can view its source, and the password hash itself is sitting in a public file, crackable offline by anyone motivated enough. It's meant to keep casual visitors from wandering into the editing tool, not to protect anything sensitive. Don't use it to gate content you actually need to keep private — for that you'd need a real backend, which is a bigger step up from this zero-build setup.
 
-## 6. Add your own content
+## 6. Embed a Power BI report (or any iframe)
+
+A reusable, responsive embed block lives in `assets/style.css` (`.embed-wrap`). It holds a 16:9 iframe that scales with the page — used on the dashboard page and available anywhere else.
+
+**To get a Power BI embed URL:**
+1. In Power BI Desktop or the Power BI Service, open the report.
+2. **File → Export → Publish to web (public)**.
+3. Copy the URL it gives you (looks like `https://app.powerbi.com/view?r=...`).
+
+**⚠️ "Publish to web" makes the report visible to anyone with the link** — no sign-in required. Don't publish this way for anything containing sensitive data. (Org-restricted embedding is possible with Power BI Embedded, but requires an Azure AD app registration and a token-issuing backend — not something a static GitHub Pages site can do on its own.)
+
+**To use it:**
+- **Dashboard page**: `dashboard/index.html` already has a "Power BI report" section with a placeholder — replace the `src` in its `<iframe>` with your real URL.
+- **A blog post**: `admin/new-post.html` has an optional "Embed URL" field — paste a Power BI (or any other) embed URL there and it's inserted automatically when you generate the post.
+- **Anywhere else**: paste this markup and set the `src`:
+  ```html
+  <div class="embed-wrap">
+    <iframe title="My report" src="https://app.powerbi.com/view?r=..." allowfullscreen></iframe>
+  </div>
+  ```
+  Add class `embed-tall` for a 4:3 box instead of the default 16:9.
+
+## 7. Add your own content
 
 - **Blog posts**: use `admin/new-post.html` (see above), or duplicate `blog/scaling-notes.html` by hand, edit the title/date/body, and add a `<li>` for it in `blog/index.html` and (optionally) the homepage log.
 - **Docs**: edit `docs/index.html` directly — each `<h2 id="...">` becomes a sidebar link. Split into multiple files later if it grows.
