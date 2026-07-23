@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>New post — Alex Rivera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-mark" href="../index.html"><span class="bracket">/</span>alex.log</a>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../docs/index.html">Docs</a>
+      <a href="../dashboard/index.html">Dashboard</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a class="auth-link" href="#" id="logout-link">Sign out</a>
+    <button class="nav-toggle" aria-label="Toggle navigation">menu</button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="section-label">Admin</div>
+    <h1 style="margin-bottom:0.4rem;">New post</h1>
+    <p style="color:var(--ink-soft); margin-bottom:2rem; max-width:60ch;">
+      Fill this in, then click Generate. It builds the post's HTML file and the
+      matching listing snippet — nothing is saved automatically. Copy or
+      download each block, add the files to your project, then commit and push
+      as usual.
+    </p>
+
+    <form id="post-form">
+      <div class="field">
+        <label for="title">Title</label>
+        <input type="text" id="title" required>
+      </div>
+      <div class="field">
+        <label for="slug">File name (slug)</label>
+        <input type="text" id="slug">
+        <div class="hint">Auto-filled from the title — this becomes <code>blog/&lt;slug&gt;.html</code>. Edit if you want something different.</div>
+      </div>
+      <div class="field">
+        <label for="date">Date</label>
+        <input type="date" id="date" required>
+      </div>
+      <div class="field">
+        <label for="readtime">Read time</label>
+        <input type="text" id="readtime" placeholder="5 min read" value="5 min read">
+      </div>
+      <div class="field">
+        <label for="excerpt">Excerpt (shown on the blog listing page)</label>
+        <textarea id="excerpt" rows="2" required></textarea>
+      </div>
+      <div class="field">
+        <label for="body">Body</label>
+        <textarea id="body" rows="14" placeholder="Write in plain paragraphs, separated by a blank line.&#10;&#10;Start a line with ## for a subheading.&#10;Start a line with &gt; for a pull-quote." required></textarea>
+        <div class="hint">Blank line = new paragraph. <code>## heading</code> for a subheading. <code>&gt; quote</code> for a pull-quote.</div>
+      </div>
+      <button type="submit" class="btn">Generate</button>
+    </form>
+
+    <div class="output-block" id="output-block" style="display:none;">
+      <div class="section-label">1. Save as <code id="output-filename"></code></div>
+      <textarea id="output-html" readonly></textarea>
+      <div class="output-actions">
+        <button class="btn secondary" id="copy-html">Copy</button>
+        <button class="btn secondary" id="download-html">Download</button>
+      </div>
+
+      <div class="section-label" style="margin-top:2rem;">2. Add this to <code>blog/index.html</code>'s post list</div>
+      <textarea id="output-snippet" style="height:120px;" readonly></textarea>
+      <div class="output-actions">
+        <button class="btn secondary" id="copy-snippet">Copy</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>&copy; 2026 Alex Rivera</span>
+    <span class="mono">Built with plain HTML on GitHub Pages</span>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  requireAdmin();
+
+  document.getElementById("logout-link").addEventListener("click", (e) => {
+    e.preventDefault();
+    logout();
+  });
+
+  const titleEl = document.getElementById("title");
+  const slugEl = document.getElementById("slug");
+  let slugTouched = false;
+  slugEl.addEventListener("input", () => { slugTouched = true; });
+  titleEl.addEventListener("input", () => {
+    if (!slugTouched) slugEl.value = slugify(titleEl.value);
+  });
+
+  function slugify(text) {
+    return text
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-");
+  }
+
+  function escapeHtml(str) {
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  // Turns plain text into paragraph/heading/blockquote HTML, matching
+  // the markup used by the existing post template.
+  function bodyToHtml(raw) {
+    const blocks = raw.split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
+    return blocks
+      .map((block) => {
+        if (block.startsWith("## ")) {
+          return `      <h2>${escapeHtml(block.slice(3).trim())}</h2>`;
+        }
+        if (block.startsWith("> ")) {
+          return `      <blockquote>${escapeHtml(block.slice(2).trim())}</blockquote>`;
+        }
+        return `      <p>${escapeHtml(block)}</p>`;
+      })
+      .join("\n\n");
+  }
+
+  function formatDate(isoDate) {
+    const d = new Date(isoDate + "T00:00:00");
+    return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+  }
+
+  document.getElementById("post-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const title = titleEl.value.trim();
+    const slug = (slugEl.value.trim() || slugify(title));
+    const isoDate = document.getElementById("date").value;
+    const readtime = document.getElementById("readtime").value.trim() || "5 min read";
+    const excerpt = document.getElementById("excerpt").value.trim();
+    const body = document.getElementById("body").value;
+
+    const displayDate = formatDate(isoDate);
+    const bodyHtml = bodyToHtml(body);
+
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${escapeHtml(title)} — Alex Rivera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-mark" href="../index.html"><span class="bracket">/</span>alex.log</a>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="index.html" aria-current="page">Blog</a>
+      <a href="../docs/index.html">Docs</a>
+      <a href="../dashboard/index.html">Dashboard</a>
+    </nav>
+    <span class="sync-status"><span class="sync-dot"></span><span id="sync-status-text">syncing…</span></span>
+    <button class="theme-toggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a class="auth-link" href="../admin/login.html">Admin</a>
+    <button class="nav-toggle" aria-label="Toggle navigation">menu</button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <h1>${escapeHtml(title)}</h1>
+      <div class="post-meta">${displayDate} &middot; ${escapeHtml(readtime)} &middot; <a href="index.html">&larr; back to blog</a></div>
+
+${bodyHtml}
+    </article>
+
+    <section class="comments-section" aria-labelledby="comments-heading">
+      <div class="section-label" id="comments-heading">Comments</div>
+      <div id="disqus_thread"></div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>&copy; 2026 Alex Rivera</span>
+    <span class="mono">Built with plain HTML on GitHub Pages</span>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+</body>
+</html>
+`;
+
+    const snippet = `      <li>
+        <h2><a href="${slug}.html">${escapeHtml(title)}</a></h2>
+        <div class="post-meta">${displayDate} &middot; ${escapeHtml(readtime)}</div>
+        <p class="post-excerpt">${escapeHtml(excerpt)}</p>
+      </li>`;
+
+    document.getElementById("output-filename").textContent = `blog/${slug}.html`;
+    document.getElementById("output-html").value = html;
+    document.getElementById("output-snippet").value = snippet;
+    document.getElementById("output-block").style.display = "block";
+    document.getElementById("output-block").scrollIntoView({ behavior: "smooth" });
+  });
+
+  document.getElementById("copy-html").addEventListener("click", () => {
+    navigator.clipboard.writeText(document.getElementById("output-html").value);
+  });
+  document.getElementById("copy-snippet").addEventListener("click", () => {
+    navigator.clipboard.writeText(document.getElementById("output-snippet").value);
+  });
+  document.getElementById("download-html").addEventListener("click", () => {
+    const slug = slugEl.value.trim() || "new-post";
+    const blob = new Blob([document.getElementById("output-html").value], { type: "text/html" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `${slug}.html`;
+    a.click();
+  });
+</script>
+</body>
+</html>

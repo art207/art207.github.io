@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard — Alex Rivera</title>
+<meta name="robots" content="noindex">
+<title>Admin sign in — Alex Rivera</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
@@ -17,36 +18,32 @@
       <a href="../index.html">Home</a>
       <a href="../blog/index.html">Blog</a>
       <a href="../docs/index.html">Docs</a>
-      <a href="index.html" aria-current="page">Dashboard</a>
+      <a href="../dashboard/index.html">Dashboard</a>
     </nav>
-    <span class="sync-status"><span class="sync-dot"></span><span id="sync-status-text">syncing…</span></span>
     <button class="theme-toggle" aria-label="Toggle dark mode">
       <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-    <a class="auth-link" href="../admin/login.html">Admin</a>
     <button class="nav-toggle" aria-label="Toggle navigation">menu</button>
   </div>
 </header>
 
 <main>
-  <div class="wrap">
-    <div class="section-label">Dashboard</div>
-    <h1 style="margin-bottom:0.4rem;">Repo activity</h1>
-    <p style="color:var(--ink-soft); margin-bottom:2rem;">Live numbers pulled from the GitHub API for this site's own repo.</p>
+  <div class="wrap narrow">
+    <div class="section-label">Admin</div>
+    <h1 style="margin-bottom:1.5rem;">Sign in</h1>
 
-    <div class="stat-grid" id="stat-grid">
-      <div class="stat-card"><div class="num">—</div><div class="label">Stars</div></div>
-      <div class="stat-card"><div class="num">—</div><div class="label">Forks</div></div>
-      <div class="stat-card"><div class="num">—</div><div class="label">Open issues</div></div>
-      <div class="stat-card"><div class="num">—</div><div class="label">Last updated</div></div>
-    </div>
+    <form id="login-form">
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn">Sign in</button>
+      <div class="form-error" id="form-error"></div>
+    </form>
 
-    <div class="section-label">Language breakdown</div>
-    <div class="bar-chart" id="bar-chart"></div>
-
-    <div class="dash-note" id="dash-note" style="display:none;">
-      Showing demo data — set <code>GH_USERNAME</code> and <code>GH_REPO</code> in <code>assets/main.js</code> to pull your own repo's live stats.
+    <div class="security-note">
+      This gate keeps casual visitors out of the post-editing tool — it isn't real security. This is a public static site, so anyone who finds this page can view its source. Don't store anything here you wouldn't want a stranger to see.
     </div>
   </div>
 </main>
@@ -59,6 +56,18 @@
 </footer>
 
 <script src="../assets/main.js"></script>
-<script src="dashboard.js"></script>
+<script>
+  document.getElementById("login-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const password = document.getElementById("password").value;
+    const errorEl = document.getElementById("form-error");
+    const ok = await attemptLogin(password);
+    if (ok) {
+      window.location.href = "new-post.html";
+    } else {
+      errorEl.textContent = "Incorrect password.";
+    }
+  });
+</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog — Alex Rivera</title>
+<title>Notes on scaling a queue past 10M messages/day — Alex Rivera</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
@@ -31,30 +31,35 @@
 
 <main>
   <div class="wrap">
-    <div class="section-label">Blog</div>
-    <h1 style="margin-bottom:2rem;">Writing</h1>
+    <article class="post">
+      <h1>Notes on scaling a queue past 10M messages/day</h1>
+      <div class="post-meta">Jun 28, 2026 &middot; 7 min read &middot; <a href="index.html">&larr; back to blog</a></div>
 
-    <ul class="post-list">
-      <li>
-        <h2><a href="scaling-notes.html">Notes on scaling a queue past 10M messages/day</a></h2>
-        <div class="post-meta">Jun 28, 2026 &middot; 7 min read</div>
-        <p class="post-excerpt">What broke first, what we over-engineered for no reason, and the one config change that mattered more than the rest combined.</p>
-      </li>
-      <li>
-        <h2><a href="#">Why I stopped using feature flags for everything</a></h2>
-        <div class="post-meta">May 30, 2026 &middot; 5 min read</div>
-        <p class="post-excerpt">Flags are cheap to add and expensive to remove. A look at where they earn their keep and where they quietly rot.</p>
-      </li>
-      <li>
-        <h2><a href="#">A minimal setup for reproducible data pipelines</a></h2>
-        <div class="post-meta">Apr 3, 2026 &middot; 9 min read</div>
-        <p class="post-excerpt">No orchestration framework, no YAML sprawl — just make, a lockfile, and a healthy fear of hidden state.</p>
-      </li>
-    </ul>
+      <p>This is placeholder body copy for an example post — replace it with your own writing. Keep the structure (one <code>&lt;h1&gt;</code>, meta line, then content) so new posts stay visually consistent.</p>
 
-    <p style="margin-top:2rem; color:var(--ink-faint); font-size:0.85rem;">
-      This is placeholder content — replace these entries with your own posts. Duplicate <code>scaling-notes.html</code> as a template for each new one.
-    </p>
+      <p>A few things worth calling out when you're editing this template: headings inside the article use <code>&lt;h2&gt;</code>, code blocks use <code>&lt;pre&gt;&lt;code&gt;</code>, and pull-quotes use <code>&lt;blockquote&gt;</code>.</p>
+
+      <h2>What actually broke</h2>
+      <p>Swap this section for your real content. A short paragraph, then maybe a code sample:</p>
+      <pre><code>queue.consume(batchSize: 500, maxInflight: 4)</code></pre>
+
+      <blockquote>Pull-quotes render with a tinted background and a left rule — good for a callout or a key takeaway.</blockquote>
+
+      <h2>What we'd do differently</h2>
+      <p>More placeholder text. Delete this whole article and write your own once the template feels right.</p>
+    </article>
+
+    <section class="comments-section" aria-labelledby="comments-heading">
+      <div class="section-label" id="comments-heading">Comments</div>
+
+      <!--
+        Comments are powered by Disqus, which lets readers post as a
+        guest — no account required. See README.md for setup: create a
+        free account at disqus.com, register your site to get a
+        shortname, then set DISQUS_SHORTNAME in assets/main.js.
+      -->
+      <div id="disqus_thread"></div>
+    </section>
   </div>
 </main>
 
