@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Docs — Alex Rivera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-mark" href="../index.html"><span class="bracket">/</span>alex.log</a>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="index.html" aria-current="page">Docs</a>
+      <a href="../dashboard/index.html">Dashboard</a>
+    </nav>
+    <span class="sync-status"><span class="sync-dot"></span><span id="sync-status-text">syncing…</span></span>
+    <button class="nav-toggle" aria-label="Toggle navigation">menu</button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="docs-layout">
+
+      <nav class="docs-nav" aria-label="Documentation sections">
+        <div class="group-label">Overview</div>
+        <ul>
+          <li><a href="#getting-started" aria-current="page">Getting started</a></li>
+          <li><a href="#installation">Installation</a></li>
+        </ul>
+        <div class="group-label">Reference</div>
+        <ul>
+          <li><a href="#api-reference">API reference</a></li>
+          <li><a href="#configuration">Configuration</a></li>
+        </ul>
+        <div class="group-label">Help</div>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="docs-content">
+        <h2 id="getting-started">Getting started</h2>
+        <p>This is a placeholder documentation page — replace each section with your own project's docs. Keep one <code>&lt;h2 id="..."&gt;</code> per topic so the sidebar links keep working.</p>
+        <p>Add a short quickstart here: the smallest set of steps that gets someone from zero to a working result.</p>
+
+        <h2 id="installation">Installation</h2>
+        <pre><code>npm install your-package
+# or
+pip install your-package</code></pre>
+        <p>Swap this for your project's real install instructions and supported environments.</p>
+
+        <h2 id="api-reference">API reference</h2>
+        <p>Document your public functions, endpoints, or CLI commands here. One clear example beats three vague ones.</p>
+        <pre><code>your_function(input, options={})
+&rarr; returns: result object</code></pre>
+
+        <h2 id="configuration">Configuration</h2>
+        <p>List configuration options, environment variables, or config file fields as a simple table or definition list.</p>
+
+        <h2 id="faq">FAQ</h2>
+        <p><strong>Where do I edit this?</strong> This whole section lives in <code>docs/index.html</code> — it's plain HTML, no build step.</p>
+        <p><strong>Can I split this into multiple pages?</strong> Yes — duplicate this file's structure per page and update the sidebar links to point at the new files instead of in-page anchors.</p>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>&copy; 2026 Alex Rivera</span>
+    <span class="mono">Built with plain HTML on GitHub Pages</span>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+</body>
+</html>

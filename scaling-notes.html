@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes on scaling a queue past 10M messages/day — Alex Rivera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-mark" href="../index.html"><span class="bracket">/</span>alex.log</a>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="index.html" aria-current="page">Blog</a>
+      <a href="../docs/index.html">Docs</a>
+      <a href="../dashboard/index.html">Dashboard</a>
+    </nav>
+    <span class="sync-status"><span class="sync-dot"></span><span id="sync-status-text">syncing…</span></span>
+    <button class="nav-toggle" aria-label="Toggle navigation">menu</button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <h1>Notes on scaling a queue past 10M messages/day</h1>
+      <div class="post-meta">Jun 28, 2026 &middot; 7 min read &middot; <a href="index.html">&larr; back to blog</a></div>
+
+      <p>This is placeholder body copy for an example post — replace it with your own writing. Keep the structure (one <code>&lt;h1&gt;</code>, meta line, then content) so new posts stay visually consistent.</p>
+
+      <p>A few things worth calling out when you're editing this template: headings inside the article use <code>&lt;h2&gt;</code>, code blocks use <code>&lt;pre&gt;&lt;code&gt;</code>, and pull-quotes use <code>&lt;blockquote&gt;</code>.</p>
+
+      <h2>What actually broke</h2>
+      <p>Swap this section for your real content. A short paragraph, then maybe a code sample:</p>
+      <pre><code>queue.consume(batchSize: 500, maxInflight: 4)</code></pre>
+
+      <blockquote>Pull-quotes render with a tinted background and a left rule — good for a callout or a key takeaway.</blockquote>
+
+      <h2>What we'd do differently</h2>
+      <p>More placeholder text. Delete this whole article and write your own once the template feels right.</p>
+    </article>
+
+    <section class="comments-section" aria-labelledby="comments-heading">
+      <div class="section-label" id="comments-heading">Comments</div>
+
+      <!--
+        Comments are powered by giscus (https://giscus.app), which stores
+        comments as GitHub Discussions on this repo — no server needed.
+
+        To enable it:
+        1. Turn on Discussions in your repo's Settings tab.
+        2. Go to https://giscus.app, enter your repo, and it will generate
+           a <script> snippet with your repo/category IDs filled in.
+        3. Replace the placeholder <script> block below with that snippet.
+      -->
+      <script src="https://giscus.app/client.js"
+        data-repo="your-username/your-username.github.io"
+        data-repo-id="REPLACE_WITH_YOUR_REPO_ID"
+        data-category="Comments"
+        data-category-id="REPLACE_WITH_YOUR_CATEGORY_ID"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>&copy; 2026 Alex Rivera</span>
+    <span class="mono">Built with plain HTML on GitHub Pages</span>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+</body>
+</html>
