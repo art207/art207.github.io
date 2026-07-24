@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notes on scaling a queue past 10M messages/day — Alex Rivera</title>
+<title>Notes on building a data pipeline that doesn't page me at 3am — Anoop Thummalapally</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
@@ -12,7 +12,7 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="site-mark" href="../index.html"><span class="bracket">/</span>alex.log</a>
+    <a class="site-mark" href="../index.html"><span class="bracket">/</span>anoop.log</a>
     <nav class="site-nav">
       <a href="../index.html">Home</a>
       <a href="index.html" aria-current="page">Blog</a>
@@ -32,8 +32,8 @@
 <main>
   <div class="wrap">
     <article class="post">
-      <h1>Notes on scaling a queue past 10M messages/day</h1>
-      <div class="post-meta">Jun 28, 2026 &middot; 7 min read &middot; <a href="index.html">&larr; back to blog</a></div>
+      <h1>Notes on building a data pipeline that doesn't page me at 3am</h1>
+      <div class="post-meta">Jun 28, 2026 &middot; 6 min read &middot; <a href="index.html">&larr; back to blog</a></div>
 
       <p>This is placeholder body copy for an example post — replace it with your own writing. Keep the structure (one <code>&lt;h1&gt;</code>, meta line, then content) so new posts stay visually consistent.</p>
 
@@ -41,9 +41,9 @@
 
       <h2>What actually broke</h2>
       <p>Swap this section for your real content. A short paragraph, then maybe a code sample:</p>
-      <pre><code>queue.consume(batchSize: 500, maxInflight: 4)</code></pre>
+      <pre><code>dag.task("daily_sales_model", retries=3, sla_minutes=45, alert_on_schema_drift=True)</code></pre>
 
-      <blockquote>Pull-quotes render with a tinted background and a left rule — good for a callout or a key takeaway.</blockquote>
+      <blockquote>A dashboard is only as trustworthy as the pipeline feeding it — pull-quotes render with a tinted background and a left rule, good for a callout or a key takeaway.</blockquote>
 
       <h2>What we'd do differently</h2>
       <p>More placeholder text. Delete this whole article and write your own once the template feels right.</p>
@@ -65,7 +65,7 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>&copy; 2026 Alex Rivera</span>
+    <span>&copy; 2026 Anoop Thummalapally</span>
     <span class="mono">Built with plain HTML on GitHub Pages</span>
   </div>
 </footer>

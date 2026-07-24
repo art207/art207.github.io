@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Docs — Alex Rivera</title>
+<title>Docs — Anoop Thummalapally</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
@@ -12,7 +12,7 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="site-mark" href="../index.html"><span class="bracket">/</span>alex.log</a>
+    <a class="site-mark" href="../index.html"><span class="bracket">/</span>anoop.log</a>
     <nav class="site-nav">
       <a href="../index.html">Home</a>
       <a href="../blog/index.html">Blog</a>
@@ -41,8 +41,8 @@
         </ul>
         <div class="group-label">Reference</div>
         <ul>
-          <li><a href="#api-reference">API reference</a></li>
-          <li><a href="#configuration">Configuration</a></li>
+          <li><a href="#api-reference">Data model reference</a></li>
+          <li><a href="#configuration">Pipeline configuration</a></li>
         </ul>
         <div class="group-label">Help</div>
         <ul>
@@ -53,21 +53,21 @@
       <div class="docs-content">
         <h2 id="getting-started">Getting started</h2>
         <p>This is a placeholder documentation page — replace each section with your own project's docs. Keep one <code>&lt;h2 id="..."&gt;</code> per topic so the sidebar links keep working.</p>
-        <p>Add a short quickstart here: the smallest set of steps that gets someone from zero to a working result.</p>
+        <p>Add a short quickstart here: the smallest set of steps that gets someone from a raw table to a working dashboard.</p>
 
         <h2 id="installation">Installation</h2>
-        <pre><code>npm install your-package
+        <pre><code>pip install dbt-core
 # or
-pip install your-package</code></pre>
-        <p>Swap this for your project's real install instructions and supported environments.</p>
+npm install -g @powerbi/cli</code></pre>
+        <p>Swap this for your real data stack — the tools and versions your pipelines and dashboards actually depend on.</p>
 
-        <h2 id="api-reference">API reference</h2>
-        <p>Document your public functions, endpoints, or CLI commands here. One clear example beats three vague ones.</p>
-        <pre><code>your_function(input, options={})
-&rarr; returns: result object</code></pre>
+        <h2 id="api-reference">Data model reference</h2>
+        <p>Document your tables, metrics, and their definitions here. One clear example beats three vague ones.</p>
+        <pre><code>metric("active_users", grain="daily", source="fct_sessions")
+&rarr; returns: distinct user count per day</code></pre>
 
-        <h2 id="configuration">Configuration</h2>
-        <p>List configuration options, environment variables, or config file fields as a simple table or definition list.</p>
+        <h2 id="configuration">Pipeline configuration</h2>
+        <p>List pipeline schedules, connection strings, or environment variables as a simple table or definition list.</p>
 
         <h2 id="faq">FAQ</h2>
         <p><strong>Where do I edit this?</strong> This whole section lives in <code>docs/index.html</code> — it's plain HTML, no build step.</p>
@@ -80,7 +80,7 @@ pip install your-package</code></pre>
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>&copy; 2026 Alex Rivera</span>
+    <span>&copy; 2026 Anoop Thummalapally</span>
     <span class="mono">Built with plain HTML on GitHub Pages</span>
   </div>
 </footer>

@@ -7,7 +7,7 @@ site/
 ├── index.html              home page
 ├── blog/
 │   ├── index.html          blog listing
-│   └── scaling-notes.html  example post (has comments)
+│   └── data-pipeline-notes.html  example post (has comments)
 ├── docs/
 │   └── index.html          documentation, sidebar nav
 ├── dashboard/
@@ -102,7 +102,7 @@ A reusable, responsive embed block lives in `assets/style.css` (`.embed-wrap`). 
 
 ## 7. Add your own content
 
-- **Blog posts**: use `admin/new-post.html` (see above), or duplicate `blog/scaling-notes.html` by hand, edit the title/date/body, and add a `<li>` for it in `blog/index.html` and (optionally) the homepage log.
+- **Blog posts**: use `admin/new-post.html` (see above), or duplicate `blog/data-pipeline-notes.html` by hand, edit the title/date/body, and add a `<li>` for it in `blog/index.html` and (optionally) the homepage log.
 - **Docs**: edit `docs/index.html` directly — each `<h2 id="...">` becomes a sidebar link. Split into multiple files later if it grows.
 - **Homepage log**: the `<ul class="log">` in `index.html` is a manually-curated feed — add a line each time you publish something.
 
