@@ -1,85 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anoop Thummalapally — Data & Dashboards</title>
-<meta name="description" content="Writing on BI, data engineering, and dashboarding — plus the occasional dead end.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
-
-<header class="site-header">
-  <div class="wrap">
-    <a class="site-mark" href="index.html"><span class="bracket">/</span>anoop.log</a>
-    <nav class="site-nav">
-      <a href="index.html" aria-current="page">Home</a>
-      <a href="blog/index.html">Blog</a>
-      <a href="docs/index.html">Docs</a>
-      <a href="dashboard/index.html">Dashboard</a>
-    </nav>
-    <span class="sync-status"><span class="sync-dot"></span><span id="sync-status-text">syncing…</span></span>
-    <button class="theme-toggle" aria-label="Toggle dark mode">
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-    <a class="auth-link" href="admin/login.html">Admin</a>
-    <button class="nav-toggle" aria-label="Toggle navigation">menu</button>
+---
+layout: default
+title: "Anoop Thummalapally — Data & Dashboards"
+full_title: true
+description: "Writing on BI, data engineering, and dashboarding — plus the occasional dead end."
+---
+<section class="hero">
+  <div class="status-line">
+    <span>BI, data engineering, occasional dead ends</span>
+    <span class="bar"></span>
+    <span class="tabular">{{ site.posts.size }} post{% if site.posts.size != 1 %}s{% endif %} published</span>
   </div>
-</header>
+  <h1>Anoop Thummalapally</h1>
+  <p class="tagline">I write up what I learn while working with data — mostly BI, dashboarding, and the pipelines that feed them, plus the documentation that should have existed before I started.</p>
 
-<main>
-  <div class="wrap">
-
-    <section class="hero">
-      <div class="eyebrow">BI, data engineering, occasional dead ends</div>
-      <h1>Anoop Thummalapally</h1>
-      <p>I write up what I learn while working with data — mostly BI, dashboarding, and the pipelines that feed them, plus the documentation that should have existed before I started.</p>
-    </section>
-
-    <section aria-labelledby="log-heading">
-      <div class="section-label" id="log-heading">Recent activity</div>
-      <ul class="log">
-        <li>
-          <time datetime="2026-06-28">Jun 28</time>
-          <a href="blog/data-pipeline-notes.html">Notes on building a data pipeline that doesn't page me at 3am</a>
-          <span class="kind">post</span>
-        </li>
-        <li>
-          <time datetime="2026-06-14">Jun 14</time>
-          <a href="docs/index.html#getting-started">Rewrote the Getting Started guide for the data stack</a>
-          <span class="kind">docs</span>
-        </li>
-        <li>
-          <time datetime="2026-05-30">May 30</time>
-          <a href="blog/index.html">Why I stopped shipping dashboards without a metrics dictionary</a>
-          <span class="kind">post</span>
-        </li>
-        <li>
-          <time datetime="2026-05-12">May 12</time>
-          <a href="docs/index.html#api-reference">Added data model reference examples</a>
-          <span class="kind">docs</span>
-        </li>
-        <li>
-          <time datetime="2026-04-22">Apr 22</time>
-          <a href="dashboard/index.html">Started tracking repo activity and Power BI reports on the dashboard</a>
-          <span class="kind">project</span>
-        </li>
-      </ul>
-    </section>
-
+  {% assign doc_section_count = 0 %}
+  {% for group in site.data.docs_nav %}{% assign doc_section_count = doc_section_count | plus: group.links.size %}{% endfor %}
+  <div class="stat-row">
+    <div class="stat"><div class="num tabular">{{ site.posts.size }}</div><div class="label">Posts published</div></div>
+    <div class="stat"><div class="num tabular">{{ doc_section_count }}</div><div class="label">Doc sections</div></div>
+    <div class="stat"><div class="num tabular">{{ site.data.site_stats.reports }}</div><div class="label">Live reports</div></div>
+    <div class="stat"><div class="num tabular">{{ site.data.site_stats.writing_since }}</div><div class="label">Writing since</div></div>
   </div>
-</main>
+</section>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <span>&copy; 2026 Anoop Thummalapally</span>
-    <span class="mono">Built with plain HTML on GitHub Pages</span>
+<div class="section-label">Start here</div>
+<div class="panel-grid">
+  <a class="panel" data-hue="post" href="/about/">
+    <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+    <h3>About</h3>
+    <p>Work history, what I've shipped, and how to reach me.</p>
+    <span class="go">View profile &rarr;</span>
+  </a>
+  <a class="panel" data-hue="build" href="/blog/">
+    <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19V5a2 2 0 0 1 2-2h8l6 6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 3v6h6"/></svg></div>
+    <h3>Blog</h3>
+    <p>Long-form posts — some with embedded Power BI dashboards.</p>
+    <span class="go">Read posts &rarr;</span>
+  </a>
+  <a class="panel" data-hue="docs" href="/docs/">
+    <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div>
+    <h3>Docs</h3>
+    <p>Reference notes and guides on the data stack, organized by topic.</p>
+    <span class="go">Browse docs &rarr;</span>
+  </a>
+  <a class="panel" data-hue="project" href="/dashboard/">
+    <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-4"/></svg></div>
+    <h3>Dashboard</h3>
+    <p>Repo activity plus embedded Power BI reports.</p>
+    <span class="go">Open dashboard &rarr;</span>
+  </a>
+</div>
+
+<div class="timeline-head" style="margin-top:3rem;">
+  <div class="section-label" style="margin:0;">Recent activity</div>
+  <div class="filter-chips" id="trace-filters">
+    <button class="chip" data-active="true" data-filter="all">All</button>
+    <button class="chip" data-hue="post" data-filter="post"><span class="swatch"></span>Post</button>
+    <button class="chip" data-hue="docs" data-filter="docs"><span class="swatch"></span>Docs</button>
+    <button class="chip" data-hue="project" data-filter="project"><span class="swatch"></span>Project</button>
+    <button class="chip" data-hue="incident" data-filter="incident"><span class="swatch"></span>Incident</button>
+    <button class="chip" data-hue="build" data-filter="build"><span class="swatch"></span>Build</button>
   </div>
-</footer>
+</div>
 
-<script src="assets/main.js"></script>
-</body>
-</html>
+{% assign trace = site.posts | concat: site.activity %}
+{% assign trace = trace | sort: "date" | reverse %}
+<div class="trace" id="trace">
+{% for item in trace %}
+  {% assign kind = item.kind | default: "post" %}
+  {% assign href = item.link | default: item.url %}
+  <div class="trace-item" data-hue="{{ kind }}">
+    <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%b %-d' }}</time>
+    <a class="title" href="{{ href }}">{{ item.title }}</a>
+    <span class="kind">{{ kind }}</span>
+  </div>
+{% endfor %}
+</div>

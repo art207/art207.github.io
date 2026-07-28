@@ -1,0 +1,16 @@
+- group: Overview
+  links:
+    - label: Getting started
+      anchor: getting-started
+    - label: Installation
+      anchor: installation
+- group: Reference
+  links:
+    - label: Data model reference
+      anchor: api-reference
+    - label: Pipeline configuration
+      anchor: configuration
+- group: Help
+  links:
+    - label: FAQ
+      anchor: faq

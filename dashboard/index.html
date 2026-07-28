@@ -1,85 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard — Anoop Thummalapally</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css">
-</head>
-<body>
+---
+layout: default
+title: Dashboard
+description: "Live repo stats plus embedded Power BI reports."
+---
+<div class="section-label">Dashboard</div>
+<h1 style="margin-bottom:0.4rem;">Repo activity</h1>
+<p style="color:var(--ink-soft); margin-bottom:2rem;">Live numbers pulled from the GitHub API for this site's own repo.</p>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="site-mark" href="../index.html"><span class="bracket">/</span>anoop.log</a>
-    <nav class="site-nav">
-      <a href="../index.html">Home</a>
-      <a href="../blog/index.html">Blog</a>
-      <a href="../docs/index.html">Docs</a>
-      <a href="index.html" aria-current="page">Dashboard</a>
-    </nav>
-    <span class="sync-status"><span class="sync-dot"></span><span id="sync-status-text">syncing…</span></span>
-    <button class="theme-toggle" aria-label="Toggle dark mode">
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-    <a class="auth-link" href="../admin/login.html">Admin</a>
-    <button class="nav-toggle" aria-label="Toggle navigation">menu</button>
-  </div>
-</header>
+<div class="stat-grid" id="stat-grid">
+  <div class="stat-card"><div class="num">—</div><div class="label">Stars</div></div>
+  <div class="stat-card"><div class="num">—</div><div class="label">Forks</div></div>
+  <div class="stat-card"><div class="num">—</div><div class="label">Open issues</div></div>
+  <div class="stat-card"><div class="num">—</div><div class="label">Last updated</div></div>
+</div>
 
-<main>
-  <div class="wrap">
-    <div class="section-label">Dashboard</div>
-    <h1 style="margin-bottom:0.4rem;">Repo activity</h1>
-    <p style="color:var(--ink-soft); margin-bottom:2rem;">Live numbers pulled from the GitHub API for this site's own repo.</p>
+<div class="section-label">Language breakdown</div>
+<div class="bar-chart" id="bar-chart"></div>
 
-    <div class="stat-grid" id="stat-grid">
-      <div class="stat-card"><div class="num">—</div><div class="label">Stars</div></div>
-      <div class="stat-card"><div class="num">—</div><div class="label">Forks</div></div>
-      <div class="stat-card"><div class="num">—</div><div class="label">Open issues</div></div>
-      <div class="stat-card"><div class="num">—</div><div class="label">Last updated</div></div>
-    </div>
+<div class="dash-note" id="dash-note" style="display:none;">
+  Showing demo data — set <code>GH_USERNAME</code> and <code>GH_REPO</code> in <code>assets/main.js</code> to pull your own repo's live stats.
+</div>
 
-    <div class="section-label">Language breakdown</div>
-    <div class="bar-chart" id="bar-chart"></div>
+<div class="section-label" style="margin-top:2.5rem;">Power BI report</div>
 
-    <div class="dash-note" id="dash-note" style="display:none;">
-      Showing demo data — set <code>GH_USERNAME</code> and <code>GH_REPO</code> in <code>assets/main.js</code> to pull your own repo's live stats.
-    </div>
+<!--
+  To embed a Power BI report here:
+  1. In Power BI Desktop/Service, open the report and use
+     File > Export > Publish to web (public).
+  2. Copy the <iframe> embed URL it gives you (looks like
+     https://app.powerbi.com/view?r=...).
+  3. Paste that URL below, replacing the placeholder.
+  Note: "Publish to web" makes the report visible to anyone with
+  the link — don't use it for reports containing sensitive data.
+-->
+{% include embed.html url="https://app.powerbi.com/view?r=REPLACE_WITH_YOUR_PUBLISH_TO_WEB_URL" title="Power BI report" caption='Replace the iframe src in dashboard/index.html with your own Power BI "Publish to web" link.' %}
 
-    <div class="section-label" style="margin-top:2.5rem;">Power BI report</div>
-
-    <!--
-      To embed a Power BI report here:
-      1. In Power BI Desktop/Service, open the report and use
-         File > Export > Publish to web (public).
-      2. Copy the <iframe> embed URL it gives you (looks like
-         https://app.powerbi.com/view?r=...).
-      3. Paste that URL as the src below, replacing the placeholder.
-      Note: "Publish to web" makes the report visible to anyone with
-      the link — don't use it for reports containing sensitive data.
-    -->
-    <div class="embed-wrap">
-      <iframe
-        title="Power BI report"
-        src="https://app.powerbi.com/view?r=REPLACE_WITH_YOUR_PUBLISH_TO_WEB_URL"
-        allowfullscreen>
-      </iframe>
-    </div>
-    <div class="embed-caption">Replace the iframe src in dashboard/index.html with your own Power BI "Publish to web" link.</div>
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <span>&copy; 2026 Anoop Thummalapally</span>
-    <span class="mono">Built with plain HTML on GitHub Pages</span>
-  </div>
-</footer>
-
-<script src="../assets/main.js"></script>
-<script src="dashboard.js"></script>
-</body>
-</html>
+<script src="/dashboard/dashboard.js"></script>

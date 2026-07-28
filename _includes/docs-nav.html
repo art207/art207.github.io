@@ -1,0 +1,11 @@
+<nav class="docs-nav" aria-label="Documentation sections">
+  {% assign first = true %}
+  {% for group in site.data.docs_nav %}
+  <div class="group-label">{{ group.group }}</div>
+  <ul>
+    {% for link in group.links %}
+    <li><a href="#{{ link.anchor }}"{% if first %} aria-current="page"{% assign first = false %}{% endif %}>{{ link.label }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endfor %}
+</nav>

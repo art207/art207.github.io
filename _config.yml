@@ -1,0 +1,50 @@
+title: "Anoop Thummalapally"
+description: "Writing on BI, data engineering, and dashboarding — plus the occasional dead end."
+url: "https://art207.github.io"
+baseurl: ""
+lang: en
+
+# Personal/manually-updated site with no scheduled-publish need — build
+# every post regardless of its date rather than silently hiding
+# anything typed with a future date in the browser-only admin tool.
+future: true
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Preserves the exact current /blog/<slug>.html URL shape.
+permalink: /blog/:slug.html
+
+collections:
+  activity:
+    output: false
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      nav_section: /blog/
+  - scope:
+      path: ""
+      type: "activity"
+    values:
+      layout: null
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor

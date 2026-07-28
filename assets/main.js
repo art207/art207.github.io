@@ -44,7 +44,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   hydrateSyncStatus();
   loadComments();
+  initTraceFilters();
 });
+
+// ------------------------------------------------------------------
+// Homepage activity timeline (the "trace") — click a kind chip to
+// filter which entries are shown. No-ops on pages without a trace.
+// ------------------------------------------------------------------
+function initTraceFilters() {
+  const filterBar = document.getElementById("trace-filters");
+  if (!filterBar) return;
+
+  const chips = Array.prototype.slice.call(filterBar.querySelectorAll(".chip"));
+  const items = Array.prototype.slice.call(document.querySelectorAll(".trace-item"));
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      chips.forEach((c) => c.setAttribute("data-active", "false"));
+      chip.setAttribute("data-active", "true");
+      const filter = chip.getAttribute("data-filter");
+      items.forEach((item) => {
+        item.style.display = filter === "all" || item.getAttribute("data-hue") === filter ? "" : "none";
+      });
+    });
+  });
+}
 
 // Pulls the latest commit timestamp from the GitHub API and shows it
 // in the header. Falls back to a static label if the request fails
@@ -122,12 +146,12 @@ async function attemptLogin(password) {
 
 function logout() {
   sessionStorage.removeItem("isAdmin");
-  window.location.href = "../index.html";
+  window.location.href = "/";
 }
 
 // Call at the top of any admin page that requires login.
 function requireAdmin() {
   if (!isAdmin()) {
-    window.location.href = "login.html";
+    window.location.href = "/admin/login.html";
   }
 }

@@ -1,90 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Docs — Anoop Thummalapally</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css">
-</head>
-<body>
+---
+layout: docs
+title: Docs
+description: "Documentation for the data stack — quickstart, install, data model reference, and pipeline configuration."
+---
+<h2 id="getting-started">Getting started</h2>
+<p>This is a placeholder documentation page — replace each section with your own project's docs. Keep one <code>&lt;h2 id="..."&gt;</code> per topic so the sidebar links keep working.</p>
+<p>Add a short quickstart here: the smallest set of steps that gets someone from a raw table to a working dashboard.</p>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="site-mark" href="../index.html"><span class="bracket">/</span>anoop.log</a>
-    <nav class="site-nav">
-      <a href="../index.html">Home</a>
-      <a href="../blog/index.html">Blog</a>
-      <a href="index.html" aria-current="page">Docs</a>
-      <a href="../dashboard/index.html">Dashboard</a>
-    </nav>
-    <span class="sync-status"><span class="sync-dot"></span><span id="sync-status-text">syncing…</span></span>
-    <button class="theme-toggle" aria-label="Toggle dark mode">
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-    <a class="auth-link" href="../admin/login.html">Admin</a>
-    <button class="nav-toggle" aria-label="Toggle navigation">menu</button>
-  </div>
-</header>
-
-<main>
-  <div class="wrap">
-    <div class="docs-layout">
-
-      <nav class="docs-nav" aria-label="Documentation sections">
-        <div class="group-label">Overview</div>
-        <ul>
-          <li><a href="#getting-started" aria-current="page">Getting started</a></li>
-          <li><a href="#installation">Installation</a></li>
-        </ul>
-        <div class="group-label">Reference</div>
-        <ul>
-          <li><a href="#api-reference">Data model reference</a></li>
-          <li><a href="#configuration">Pipeline configuration</a></li>
-        </ul>
-        <div class="group-label">Help</div>
-        <ul>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </nav>
-
-      <div class="docs-content">
-        <h2 id="getting-started">Getting started</h2>
-        <p>This is a placeholder documentation page — replace each section with your own project's docs. Keep one <code>&lt;h2 id="..."&gt;</code> per topic so the sidebar links keep working.</p>
-        <p>Add a short quickstart here: the smallest set of steps that gets someone from a raw table to a working dashboard.</p>
-
-        <h2 id="installation">Installation</h2>
-        <pre><code>pip install dbt-core
+<h2 id="installation">Installation</h2>
+<pre><code>pip install dbt-core
 # or
 npm install -g @powerbi/cli</code></pre>
-        <p>Swap this for your real data stack — the tools and versions your pipelines and dashboards actually depend on.</p>
+<p>Swap this for your real data stack — the tools and versions your pipelines and dashboards actually depend on.</p>
 
-        <h2 id="api-reference">Data model reference</h2>
-        <p>Document your tables, metrics, and their definitions here. One clear example beats three vague ones.</p>
-        <pre><code>metric("active_users", grain="daily", source="fct_sessions")
+<h2 id="api-reference">Data model reference</h2>
+<p>Document your tables, metrics, and their definitions here. One clear example beats three vague ones.</p>
+<pre><code>metric("active_users", grain="daily", source="fct_sessions")
 &rarr; returns: distinct user count per day</code></pre>
 
-        <h2 id="configuration">Pipeline configuration</h2>
-        <p>List pipeline schedules, connection strings, or environment variables as a simple table or definition list.</p>
+<h2 id="configuration">Pipeline configuration</h2>
+<p>List pipeline schedules, connection strings, or environment variables as a simple table or definition list.</p>
 
-        <h2 id="faq">FAQ</h2>
-        <p><strong>Where do I edit this?</strong> This whole section lives in <code>docs/index.html</code> — it's plain HTML, no build step.</p>
-        <p><strong>Can I split this into multiple pages?</strong> Yes — duplicate this file's structure per page and update the sidebar links to point at the new files instead of in-page anchors.</p>
-      </div>
-
-    </div>
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <span>&copy; 2026 Anoop Thummalapally</span>
-    <span class="mono">Built with plain HTML on GitHub Pages</span>
-  </div>
-</footer>
-
-<script src="../assets/main.js"></script>
-</body>
-</html>
+<h2 id="faq">FAQ</h2>
+<p><strong>Where do I edit this?</strong> This whole section lives in <code>docs/index.html</code> — it's plain HTML with Jekyll front matter, no build step to run yourself.</p>
+<p><strong>Can I split this into multiple pages?</strong> Yes — duplicate this file's structure per page and update <code>_data/docs_nav.yml</code> to point at the new files instead of in-page anchors.</p>

@@ -1,0 +1,4 @@
+<div class="embed-wrap{% if include.tall %} embed-tall{% endif %}">
+  <iframe title="{{ include.title }}" src="{{ include.url }}" allowfullscreen></iframe>
+</div>
+{% if include.caption %}<div class="embed-caption">{{ include.caption }}</div>{% endif %}

@@ -1,70 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog — Anoop Thummalapally</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css">
-</head>
-<body>
+---
+layout: default
+title: Blog
+description: "Long-form posts on BI, data engineering, and dashboarding."
+---
+<div class="section-label">Blog</div>
+<h1 style="margin-bottom:2rem;">Writing</h1>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="site-mark" href="../index.html"><span class="bracket">/</span>anoop.log</a>
-    <nav class="site-nav">
-      <a href="../index.html">Home</a>
-      <a href="index.html" aria-current="page">Blog</a>
-      <a href="../docs/index.html">Docs</a>
-      <a href="../dashboard/index.html">Dashboard</a>
-    </nav>
-    <span class="sync-status"><span class="sync-dot"></span><span id="sync-status-text">syncing…</span></span>
-    <button class="theme-toggle" aria-label="Toggle dark mode">
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-    <a class="auth-link" href="../admin/login.html">Admin</a>
-    <button class="nav-toggle" aria-label="Toggle navigation">menu</button>
-  </div>
-</header>
+<ul class="post-list">
+{% for post in site.posts %}
+  <li>
+    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+    <div class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &middot; {{ post.readtime }}</div>
+    <p class="post-excerpt">{{ post.excerpt }}</p>
+  </li>
+{% endfor %}
+</ul>
 
-<main>
-  <div class="wrap">
-    <div class="section-label">Blog</div>
-    <h1 style="margin-bottom:2rem;">Writing</h1>
-
-    <ul class="post-list">
-      <li>
-        <h2><a href="data-pipeline-notes.html">Notes on building a data pipeline that doesn't page me at 3am</a></h2>
-        <div class="post-meta">Jun 28, 2026 &middot; 6 min read</div>
-        <p class="post-excerpt">What broke first, what we over-engineered for no reason, and the one alert that mattered more than the rest combined.</p>
-      </li>
-      <li>
-        <h2><a href="#">Why I stopped shipping dashboards without a metrics dictionary</a></h2>
-        <div class="post-meta">May 30, 2026 &middot; 5 min read</div>
-        <p class="post-excerpt">Two dashboards, two different definitions of "active user," one very confused stakeholder meeting.</p>
-      </li>
-      <li>
-        <h2><a href="#">A minimal setup for reproducible data pipelines</a></h2>
-        <div class="post-meta">Apr 3, 2026 &middot; 9 min read</div>
-        <p class="post-excerpt">No orchestration framework, no YAML sprawl — just make, a lockfile, and a healthy fear of hidden state.</p>
-      </li>
-    </ul>
-
-    <p style="margin-top:2rem; color:var(--ink-faint); font-size:0.85rem;">
-      This is placeholder content — replace these entries with your own posts. Duplicate <code>data-pipeline-notes.html</code> as a template for each new one.
-    </p>
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <span>&copy; 2026 Anoop Thummalapally</span>
-    <span class="mono">Built with plain HTML on GitHub Pages</span>
-  </div>
-</footer>
-
-<script src="../assets/main.js"></script>
-</body>
-</html>
+<p style="margin-top:2rem; color:var(--ink-faint); font-size:0.85rem;">
+  New posts are created via <code>admin/new-post.html</code>, or by hand as a Markdown file in <code>_posts/</code> — see this list update itself automatically, no manual editing needed here.
+</p>
