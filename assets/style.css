@@ -31,17 +31,19 @@
   --radius: 4px;
 }
 
-/* Dark theme: cool near-black ground with brightened hue variants —
-   not a naive invert, contrast and hue balance tuned separately. */
+/* Dark theme: GitHub Dark's own canvas/border colors, so the site's
+   dark mode sits flush with GitHub itself (this is hosted on Pages
+   and links back to the repo constantly). Text and accent hues keep
+   their own tuned values on top of that neutral ground. */
 html[data-theme="dark"] {
-  --paper: #0E1513;
-  --paper-raised: #172420;
-  --paper-sunken: #0A100E;
+  --paper: #0D1117;
+  --paper-raised: #161B22;
+  --paper-sunken: #010409;
   --ink: #E7F0EC;
   --ink-soft: #A9BDB6;
   --ink-faint: #61756E;
-  --line: #223530;
-  --line-strong: #2E453F;
+  --line: #30363D;
+  --line-strong: #484F58;
   --accent: #35C79A;
   --accent-ink: #7FE6C4;
   --accent-soft: #16332B;
