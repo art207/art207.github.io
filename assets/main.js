@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   hydrateSyncStatus();
   loadComments();
   initTraceFilters();
+  initTagFilters();
 });
 
 // ------------------------------------------------------------------
@@ -65,6 +66,30 @@ function initTraceFilters() {
       const filter = chip.getAttribute("data-filter");
       items.forEach((item) => {
         item.style.display = filter === "all" || item.getAttribute("data-hue") === filter ? "" : "none";
+      });
+    });
+  });
+}
+
+// ------------------------------------------------------------------
+// Blog listing tag filter — click a tag chip to show only posts with
+// that tag. No-ops on pages without a tag filter (e.g. no tags yet).
+// ------------------------------------------------------------------
+function initTagFilters() {
+  const filterBar = document.getElementById("tag-filters");
+  if (!filterBar) return;
+
+  const chips = Array.prototype.slice.call(filterBar.querySelectorAll(".chip"));
+  const items = Array.prototype.slice.call(document.querySelectorAll(".post-list li"));
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      chips.forEach((c) => c.setAttribute("data-active", "false"));
+      chip.setAttribute("data-active", "true");
+      const filter = chip.getAttribute("data-filter");
+      items.forEach((item) => {
+        const tags = (item.getAttribute("data-tags") || "").split("|");
+        item.style.display = filter === "all" || tags.indexOf(filter) !== -1 ? "" : "none";
       });
     });
   });

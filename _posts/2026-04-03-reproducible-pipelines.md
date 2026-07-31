@@ -3,6 +3,7 @@ layout: post
 title: "A minimal setup for reproducible data pipelines"
 date: 2026-04-03
 kind: post
+tags: ["Data Engineering", "Tooling"]
 readtime: "9 min read"
 excerpt: "No orchestration framework, no YAML sprawl — just make, a lockfile, and a healthy fear of hidden state."
 ---

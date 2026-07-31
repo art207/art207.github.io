@@ -51,6 +51,11 @@ admin_link: signout
     <label for="excerpt">Excerpt (shown on the blog listing page)</label>
     <textarea id="excerpt" rows="2"></textarea>
   </div>
+  <div class="field" id="tags-field">
+    <label for="tags">Tags (comma-separated, optional)</label>
+    <input type="text" id="tags" placeholder="Data Engineering, Pipelines">
+    <div class="hint">Used for the topic filter on the blog page. Reuse existing tags where they fit — check the blog page for what's already in use.</div>
+  </div>
   <div class="field" id="body-field">
     <label for="body">Body</label>
     <textarea id="body" rows="14" placeholder="Write in plain Markdown, paragraphs separated by a blank line.&#10;&#10;Start a line with ## for a subheading.&#10;Start a line with &gt; for a pull-quote."></textarea>
@@ -70,6 +75,15 @@ admin_link: signout
 </form>
 
 <div class="output-block" id="output-block" style="display:none;">
+  <div class="success-note">
+    <strong>&#10003; Generated. Here's what to do with it:</strong>
+    <ol>
+      <li>Copy or download the file content below.</li>
+      <li>On GitHub, go to your repo and use <strong>Add file &rarr; Create new file</strong>.</li>
+      <li>Name it exactly <code id="output-filename-inline"></code> and paste the content in.</li>
+      <li>Commit directly to <code>main</code> — it's live in about a minute.</li>
+    </ol>
+  </div>
   <div class="section-label">Save as <code id="output-filename"></code></div>
   <textarea id="output-md" readonly></textarea>
   <div class="output-actions">
@@ -107,7 +121,7 @@ admin_link: signout
   const slugHint = document.getElementById("slug-hint");
   let slugTouched = false;
 
-  const POST_ONLY_FIELDS = ["readtime-field", "excerpt-field", "body-field", "embed-field"];
+  const POST_ONLY_FIELDS = ["readtime-field", "excerpt-field", "tags-field", "body-field", "embed-field"];
   const ACTIVITY_ONLY_FIELDS = ["link-field"];
 
   function applyMode() {
@@ -170,12 +184,20 @@ admin_link: signout
       const readtime = document.getElementById("readtime").value.trim() || "5 min read";
       const excerpt = document.getElementById("excerpt").value.trim();
       const embedUrl = document.getElementById("embed").value.trim();
+      const tags = document.getElementById("tags").value
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean);
+      const tagsYaml = tags.length
+        ? `[${tags.map((t) => `"${escapeYaml(t)}"`).join(", ")}]`
+        : "[]";
 
       frontMatter = `---
 layout: post
 title: "${escapeYaml(title)}"
 date: ${isoDate}
 kind: ${kind}
+tags: ${tagsYaml}
 readtime: "${escapeYaml(readtime)}"
 excerpt: "${escapeYaml(excerpt)}"
 ${embedUrl ? `embed_url: "${escapeYaml(embedUrl)}"\n` : ""}---
@@ -199,6 +221,7 @@ link: "${escapeYaml(link)}"
     const fileContents = frontMatter + body;
 
     document.getElementById("output-filename").textContent = filename;
+    document.getElementById("output-filename-inline").textContent = filename;
     document.getElementById("output-md").value = fileContents;
     document.getElementById("output-block").style.display = "block";
     document.getElementById("output-block").scrollIntoView({ behavior: "smooth" });

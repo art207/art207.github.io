@@ -3,6 +3,7 @@ layout: post
 title: "Notes on building a data pipeline that doesn't page me at 3am"
 date: 2026-06-28
 kind: post
+tags: ["Data Engineering", "Pipelines"]
 readtime: "6 min read"
 excerpt: "What broke first, what we over-engineered for no reason, and the one alert that mattered more than the rest combined."
 ---

@@ -3,6 +3,7 @@ layout: post
 title: "Why I stopped shipping dashboards without a metrics dictionary"
 date: 2026-05-30
 kind: post
+tags: ["BI", "Dashboards"]
 readtime: "5 min read"
 excerpt: "Two dashboards, two different definitions of \"active user,\" one very confused stakeholder meeting."
 ---

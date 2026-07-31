@@ -4,14 +4,33 @@ title: Blog
 description: "Long-form posts on BI, data engineering, and dashboarding."
 ---
 <div class="section-label">Blog</div>
-<h1 style="margin-bottom:2rem;">Writing</h1>
+<h1 style="margin-bottom:1.2rem;">Writing</h1>
+
+{% assign tag_names = "" %}
+{% for tag in site.tags %}{% assign tag_names = tag_names | append: tag[0] | append: "||" %}{% endfor %}
+{% assign tag_list = tag_names | split: "||" | sort %}
+{% if tag_list.size > 0 %}
+<div class="filter-chips" id="tag-filters" style="margin-bottom:1.8rem;">
+  <button class="chip" data-active="true" data-filter="all">All</button>
+  {% for t in tag_list %}
+  <button class="chip" data-filter="{{ t }}">{{ t }}</button>
+  {% endfor %}
+</div>
+{% endif %}
 
 <ul class="post-list">
 {% for post in site.posts %}
-  <li>
+  {% assign post_tags = "" %}
+  {% for t in post.tags %}{% assign post_tags = post_tags | append: t %}{% unless forloop.last %}{% assign post_tags = post_tags | append: "|" %}{% endunless %}{% endfor %}
+  <li data-tags="{{ post_tags }}">
     <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
     <div class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &middot; {{ post.readtime }}</div>
     <p class="post-excerpt">{{ post.excerpt }}</p>
+    {% if post.tags and post.tags.size > 0 %}
+    <div class="tag-pills">
+      {% for t in post.tags %}<span class="tag-pill">{{ t }}</span>{% endfor %}
+    </div>
+    {% endif %}
   </li>
 {% endfor %}
 </ul>
